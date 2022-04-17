@@ -36,7 +36,7 @@ router.get("/",async(req,res)=>{
 // Filtering the Flats on the basis of Flat block (A,B,C,D....)
 router.get("/block",async(req,res)=>{
     try{
-        const query = req.query.block
+        const query = req.query.filter
         const flat = await Flat.find({"flat_block":query}).populate("flat_residents").lean().exec()
         res.send(flat)
     }catch(err){
@@ -47,7 +47,7 @@ router.get("/block",async(req,res)=>{
 // Filtering the Flats on the basis of Flat types (owner,tenants)
 router.get("/type",async(req,res)=>{
     try{
-        const query = req.query.type
+        const query = req.query.filter
         const flat = await Flat.find({"flat_type":query}).populate("flat_residents").lean().exec()
         res.send(flat)
     }catch(err){
