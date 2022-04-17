@@ -8,7 +8,6 @@ const residentSchema= require("./src/controllers/resident.controller")
 const {register, login,newToken} = require("./src/controllers/auth_controller")
 
 const app = express()
-
 require('dotenv').config();
 const PORT = process.env.PORT || 3125;
 app.use(body_parser.json())
