@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const body_parser = require("body-parser")
 const connect = require("./src/config/db")
-const managerSchema= require("./src/controllers/manager.controller")
 const flatSchema= require("./src/controllers/flat.controller")
 const residentSchema= require("./src/controllers/resident.controller")
 const {register, login,newToken} = require("./src/controllers/auth_controller")
@@ -29,37 +28,10 @@ const corsOptions = {
   });
   
   
-  // app.use("/manager",managerSchema)
   app.use("/flat",flatSchema)
   app.use("/resident",residentSchema)
   app.post("/register",register);
   app.post("/login",login);
-  
-//     passport.serializeUser(function (user, done) {
-//       done(null, user);
-//     });
-    
-//     passport.deserializeUser(function (user, done) {
-//       done(null, user);
-//     });
-    
-//     app.get(
-//       "/auth/google",
-//       passport.authenticate("google", { scope: ["email", "profile"] })
-//     );
-    
-//     app.get(
-//       "/auth/google/callback",
-//       passport.authenticate("google", {
-//         failureRedirect: "/auth/google/failure",
-//       }),
-//       (req, res) => {
-//         const { user } = req;
-//         const token = newToken(user);
-//         localStorage.setItem("userData",JSON.stringify(user));
-//         return res.send({ user, token });
-//       }
-// );
 
 app.listen(PORT, async () =>{
     try{

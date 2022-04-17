@@ -1,9 +1,8 @@
-const manager = require("../models/manager.model");
+const Manager = require("../models/manager.model");
 
 require("dotenv").config();
 
 const jwt = require("jsonwebtoken");
-// const res = require("express/lib/response");
 
 const newToken = (manager) => {
   return jwt.sign({ manager }, "process.env.jwt_sec_key");
@@ -11,7 +10,7 @@ const newToken = (manager) => {
 
 const register = async (req, res) => {
   try {
-    let manager_data = await manager.find({ email: req.body.email }).lean().exec();
+    let manager_data = await Manager.find({ email: req.body.email }).lean().exec();
     console.log(manager_data);
 
     if (manager_data.length !== 0) {
@@ -20,7 +19,7 @@ const register = async (req, res) => {
         .send({ message: "account associated with this email already exist" });
     }
 
-    manager_data = await manager.create(req.body);
+    manager_data = await Manager.create(req.body);
 
     const token = newToken(manager_data);
 
@@ -32,7 +31,7 @@ const register = async (req, res) => {
 
 const login = async (req,res) => {
   try {
-    const manager_data = await manager
+    const manager_data = await Manager
       .findOne({ email: req.body.email })
      
 

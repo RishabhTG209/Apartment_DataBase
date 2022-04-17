@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const bcrypt= require("bcryptjs");
 
 const manager_schema = new mongoose.Schema({
-    Name:{type:String,required:true },
+    name:{type:String,required:true },
     email:{type:String, required:true},
-    password:{type:Number, required:true}
+    password:{type:String, required:true}
 },{
     versionKey:false,
     timestamps:true,
